@@ -23,7 +23,7 @@
 
 /**
  * Объект продукта
- * @typedef Product
+ * @typedef {Object} Product
  * @property {number} id айди
  * @property {string} title заголовок
  * @property {string} [image] ссылка на картинку
@@ -35,7 +35,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      Product: {
+      product: {
         id: 0,
         title: '',
         image: '',
@@ -53,21 +53,23 @@ export default {
     //   headers: {'Header': 'foobar'}
     // });
 
-    axios.get("https://vue-study.skillbox.cc/api/users/accessKey", {}).then((resp) => {
+    axios.get("https://vue-study.skillbox.cc/api/users/accessKey").then((resp) => {
       this.accessKey = resp.data
       console.log(resp);
     });
-    axios.get("https://vue-study.skillbox.cc/api/products/{id}", {
+
+    axios.get("https://vue-study.skillbox.cc/api/products/3", {
       params: {
-        categoryId: 3, slug: 'Thunder'
+        category: 3
       },
     }).then((response) => {
       this.products = response.data
       console.log(response);
     });
-    axios.post("https://vue-study.skillbox.cc/api/orders", {
-      data: {}
-    }).then()
+
+    // axios.post("https://vue-study.skillbox.cc/api/orders", {
+    //   data: {}
+    // }).then()
   },
 
   computed: {

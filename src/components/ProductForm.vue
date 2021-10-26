@@ -100,6 +100,7 @@
 <script>
 import {email, minLength, numeric, required} from "vuelidate/lib/validators";
 import {validationMixin} from "vuelidate";
+import axios from "axios";
 
 export default {
   mixins: [validationMixin],
@@ -128,6 +129,9 @@ export default {
 
   methods: {
     submitForm() {
+      axios.post("https://vue-study.skillbox.cc/api/orders", {
+        data: {}
+      }).then()
       console.log('Submitted')
     },
 

@@ -9,11 +9,10 @@
               v-model.trim="form.login"
               :class="$v.form.login.$error ? 'is-invalid' : ''"
               class="form-control"
-              type="text"
-          />
+              type="text"/>
           <!--<div class="invalid-feedback">Ошибка</div>-->
         </label>
-        <p v-if="$v.form.login.$dirty && !$v.form.login.required"
+        <p v-if="$v.form.login.$dirty && !$v.form.login.required "
            class="invalid-feedback">
           Обязательное поле
         </p>
@@ -30,8 +29,7 @@
               v-model.trim="form.address"
               class="form-control"
               type="text"
-              :class="$v.form.address.$error ? 'is-invalid' : ''"
-          />
+              :class="$v.form.address.$error ? 'is-invalid' : ''"/>
         </label>
         <p v-if="$v.form.address.$dirty && !$v.form.address.required"
            class="invalid-feedback">
@@ -46,8 +44,7 @@
               v-model.trim="form.phone"
               class="form-control"
               type="tel"
-              :class="$v.form.phone.$error ? 'is-invalid' : ''"
-          />
+              :class="$v.form.phone.$error ? 'is-invalid' : ''"/>
         </label>
         <p v-if="$v.form.phone.$dirty && !$v.form.phone.required"
            class="invalid-feedback">
@@ -56,6 +53,10 @@
         <p v-if="$v.form.phone.$dirty && !$v.form.phone.numeric"
            class="invalid-feedback">
           Здесь должны быть цифры
+        </p>
+        <p v-if="$v.form.phone.$dirty && !$v.form.phone.minLength"
+           class="invalid-feedback">
+          Здесь должно быть 11 символов
         </p>
       </div>
       <div class="form-group">
@@ -66,15 +67,12 @@
               v-model.trim="form.email"
               :class="$v.form.email.$error ? 'is-invalid' : ''"
               class="form-control"
-              type="email"
-          />
+              type="email"/>
         </label>
-        <p v-if="$v.form.email.$dirty && !$v.form.email.required"
-           class="invalid-feedback">
+        <p v-if="$v.form.login.$dirty && !$v.form.email.required" class="invalid-feedback">
           Обязательное поле
         </p>
-        <p v-if="$v.form.email.$dirty && !$v.form.email.email"
-           class="invalid-feedback">
+        <p v-if="$v.form.login.$dirty && !$v.form.email.email" class="invalid-feedback">
           Email неккоректный
         </p>
       </div>
@@ -87,8 +85,8 @@
             v-model="form.comment"
             class="form-control mb-2"
             type="text"
-            :class="$v.form.comment.$error ? 'is-invalid' : ''"
-        ></textarea>
+            :class="$v.form.comment.$error ? 'is-invalid' : ''">
+        </textarea>
         <p v-if="$v.form.comment.$dirty && !$v.form.comment.required"
            class="invalid-feedback">
           Обязательное поле
@@ -111,7 +109,7 @@ export default {
       form: {
         login: "",
         address: "",
-        phone: +79372121989,
+        phone: 79372121989,
         email: "",
         comment: "",
       },
@@ -123,7 +121,7 @@ export default {
       login: {required, minLength: minLength(5)},
       address: {required},
       email: {required, email},
-      phone: {required, numeric},
+      phone: {required, numeric, minLength: minLength(11)},
       comment: {required},
     },
   },
@@ -142,6 +140,5 @@ export default {
   },
 };
 </script>
-<style scoped>
 
-</style>
+<style scoped></style>

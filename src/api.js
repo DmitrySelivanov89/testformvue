@@ -6,9 +6,9 @@ const instance = axios.create({
     headers: {'Header': 'foobar'}
 });
 
-export const getAccessKey = () => axios.get(`${instance}/api/users/accessKey`,{
-    params:{}
-}).then().catch()
+export const getAccessKey = () => axios.get(`${instance}/api/users/accessKey`).then((response) => {
+    console.log(response.data)
+}).catch()
 
 export const getProducts = () => axios.get(`${instance}/api/products/{id}`, {
     params: {
@@ -19,8 +19,6 @@ export const getProducts = () => axios.get(`${instance}/api/products/{id}`, {
 })
 
 export const postProducts = () => axios.post(`${instance}/api/orders`, {
-    data: {
-
-    }
+    data: {}
 }).then().catch()
 

@@ -1,24 +1,18 @@
 import axios from "axios";
 
-const instance = axios.create({
-    baseURL: 'https://vue-study.skillbox.cc/',
-    timeout: 1000,
-    headers: {'Header': 'foobar'}
+export const getAccessKey = () => axios.get("https://vue-study.skillbox.cc/api/users/accessKey").then((resp) => {
+    this.accessKey = resp.data.accessKey
+    console.log(this.accessKey);
 });
 
-export const getAccessKey = () => axios.get(`${instance}/api/users/accessKey`).then((response) => {
-    console.log(response.data)
-}).catch()
-
-export const getProducts = () => axios.get(`${instance}/api/products/{id}`, {
-    params: {
-        categoryId: 3,
-    },
-}).then((response) => {
-    console.log(response.data);
-})
-
-export const postProducts = () => axios.post(`${instance}/api/orders`, {
-    data: {}
-}).then().catch()
-
+export const postProducts = () => {
+    const {phone} = this.form
+    console.log({...this.form, phone: String(phone)})
+    axios.post(`https://vue-study.skillbox.cc/api/orders?userAccessKey=${this.accessKey}`, {
+        ...this.form,
+        phone: String(phone)
+    }).then((response) => {
+        console.log(response.data)
+    }).catch()
+    console.log('Submitted')
+}

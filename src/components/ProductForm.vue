@@ -12,8 +12,7 @@
               type="text"/>
           <!--<div class="invalid-feedback">Ошибка</div>-->
         </label>
-        <p v-if="!$v.form.name.required "
-           class="invalid-feedback">
+        <p v-if="$v.form.name.$dirty && !$v.form.name.required " class="invalid-feedback">
           Обязательное поле
         </p>
         <p v-else-if="$v.form.name.$dirty && !$v.form.name.minLength"
@@ -133,7 +132,6 @@ export default {
   created() {
     axios.get("https://vue-study.skillbox.cc/api/users/accessKey").then((resp) => {
       this.accessKey = resp.data.accessKey
-      console.log(this.accessKey);
     });
   },
 

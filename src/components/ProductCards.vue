@@ -1,18 +1,20 @@
 <template>
-  <div class="row">
-    <div v-for="product in productsItems" :key="product.id" class="col-6">
-      <div class="row-card card">
-        <img :src="product.image.file.url" alt="Название" class="row-card__image-top card-img-top"/>
-        <div class="row-card__body card-body">
-          <h5 class="row-card__title card-title">{{ product.title }}</h5>
-          <span class="row-card__subtitle mb-2 text-muted">{{ product.price }}</span>
-          <a v-for="color in product.colors" :key="color.id" :style="{color:color.code}"
-             class="row-card__link card-link"
-             href="#">{{ color.title }}</a>
+  <section class="container mb-5">
+    <div class="row">
+      <div v-for="product in productsItems" :key="product.id" class="col-6">
+        <div class="row-card card">
+          <img :src="product.image.file.url" alt="Название" class="row-card-image__top card-img-top"/>
+          <div class="row-card-body card-body">
+            <h5 class="row-card-body__title card-title">{{ product.title }}</h5>
+            <span class="row-card-body__subtitle card-subtitle mb-2 text-muted">{{ product.price }}</span>
+            <a v-for="color in product.colors" :key="color.id" :style="{color:color.code}"
+               class="row-card-body__link card-link"
+               href="#">{{ color.title }}</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -41,9 +43,9 @@ export default {
   },
 
   created() {
+
     axios.get("https://vue-study.skillbox.cc/api/products?categoryId=3").then((response) => {
       this.products = response.data.items
-      console.log(this.products);
     });
   },
 
@@ -59,7 +61,7 @@ export default {
 </script>
 
 <style scoped>
-.row-card__subtitle {
+.row-card-body__subtitle {
   display: block;
 }
 </style>

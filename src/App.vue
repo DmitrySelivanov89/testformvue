@@ -1,9 +1,7 @@
 <template>
-  <div id="app">
-    <div class="container">
-      <product-form/>
-      <product-cards/>
-    </div>
+  <div class="container">
+    <product-form/>
+    <product-cards/>
   </div>
 </template>
 
